@@ -18,6 +18,10 @@ module JsonStatham
       !!logger
     end
 
+    def schemas_path_present?
+      !!schemas_path
+    end
+
     def schemas_path=(value)
       Validation.check_object_class(value, [String])
 

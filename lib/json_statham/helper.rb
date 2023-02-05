@@ -7,20 +7,18 @@ module JsonStatham
     end
 
     module ClassMethods
-      def with_schema(name, &block)
-        parser = JsonStatham::Parser.new(name, &block)
-        previous_duration = parser.previous_duration
-        parser.store_schema if JsonStatham.config.store_schema?
-        return unless JsonStatham.config.logger?
+      def stathamnize(name, &block)
+        ensure_valid_config
 
-        show_result(parser.observer.duration, previous_duration)
+        JsonStatham::Parser.call(name, &block)
       end
 
       private
 
-      def show_result(current_duration, previous_duration)
-        puts "Previous duration: #{current_duration}"
-        puts "Current duration: #{previous_duration}"
+      def ensure_valid_config
+        return if JsonStatham.config.schemas_path_present?
+
+        raise ArgumentError, "JsonStatham::Config#chemas_path can't be blank."
       end
     end
   end

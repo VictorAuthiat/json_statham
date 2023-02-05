@@ -3,7 +3,7 @@
 module JsonStatham
   module Requests
     class Observer < Base
-      attr_reader :starting, :ending, :data
+      attr_reader :starting, :ending, :data, :duration
 
       def self.clock_gettime
         Process.clock_gettime(Process::CLOCK_MONOTONIC, :float_second)
@@ -13,18 +13,9 @@ module JsonStatham
         @starting = clock_gettime
         @data     = block.call
         @ending   = clock_gettime
+        @duration = ending - starting
 
         self
-      end
-
-      def duration
-        return unless finished?
-
-        ending - starting
-      end
-
-      def finished?
-        !!(ending)
       end
 
       def clock_gettime
