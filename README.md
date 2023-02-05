@@ -87,7 +87,7 @@ extend `JsonStatham` in your spec_helper.
 
 ```ruby
 RSpec.configure do |config|
-  config.extend JsonStatham
+  config.include JsonStatham
 end
 ```
 

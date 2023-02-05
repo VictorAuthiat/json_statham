@@ -14,5 +14,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.extend JsonStatham
+  config.include JsonStatham
 end
