@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Victor"]
   spec.email   = ["authiatv@gmail.com"]
 
-  spec.summary     = "Check for json schema changes during a migration"
-  spec.description = "Check for json schema changes during a migration"
+  spec.summary     = "Ruby library to check json schema changes"
+  spec.description = "JsonStatham allows to check the structure changes in a json"
   spec.homepage    = "https://github.com/victorauthiat/json_statham"
   spec.license     = "MIT"
 
