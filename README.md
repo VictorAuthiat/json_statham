@@ -42,7 +42,7 @@ module Foo
 end
 ```
 
-Running `Foo.call({ foo: :bar })` will create a new file *foo.json* in a *schemas* directory. This file contain the json schema and execution duration.
+Running `Foo.call({ foo: :bar })` will create a new file **foo.json** in a **schemas** directory. This file contain the json schema and execution duration.
 
 Example:
 
