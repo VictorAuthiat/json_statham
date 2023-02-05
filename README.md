@@ -2,6 +2,8 @@ Not deployed yet.
 
 # JsonStatham
 
+[![Build Status](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml/badge.svg)](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml)
+
 Ruby library to check json schema changes.
 
 JsonStatham allows to check the structure changes in a json.
