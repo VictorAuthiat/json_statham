@@ -60,8 +60,8 @@ Available configuration attributes:
 
 ```ruby
 JsonStatham.configure do |config|
-  config.store_schema = true
   config.schemas_path = "schemas"
+  config.store_schema = true
   config.logger       = true
 end
 ```
