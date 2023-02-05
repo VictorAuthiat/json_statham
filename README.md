@@ -2,9 +2,9 @@ Not deployed yet.
 
 # JsonStatham
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/json_statham`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Ruby library for carefully refactoring json objects.
+You can use this library when you want to change your serialization system.
+For example if you want to migrate from [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) to another library.
 
 ## Installation
 
@@ -18,7 +18,83 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure the `schemas_path`.
+
+```ruby
+JsonStatham.configure do |config|
+  config.schemas_path = "schemas"
+end
+```
+
+Now you can extend `JsonStatham` to use `.stathamnize` method.
+
+```ruby
+module Foo
+  extend JsonStatham
+
+  def self.call(hash)
+    result = stathamnize("foo") { hash }
+
+    result.success?
+  end
+end
+```
+
+Running `Foo.call({ foo: :bar })` will create a new file containing the json schema and execution duration.
+
+```json
+// schemas/foo.json
+{"schema":{"bar":"symbol"},"duration":2.9999937396496534e-06}
+```
+
+It returns a `JsonStatham::Result` object.
+
+```ruby
+#<JsonStatham::Result:0x0000000106275428
+ @parser=
+  #<JsonStatham::Parser:0x0000000106276648
+   @_schema={:bar=>:baz},
+   @block=#<Proc:0x0000000106276580 (pry):28>,
+   @name="foo",
+   @observer=
+    #<JsonStatham::Requests::Observer:0x0000000106275e78
+     @config=
+      #<JsonStatham::Config:0x00000001062f7b08
+       @logger=true,
+       @schemas_path="schemas",
+       @store_schema=true>,
+     @data={:bar=>:baz},
+     @duration=9.000010322779417e-06,
+     @ending=255536.908541,
+     @parser=#<JsonStatham::Parser:0x0000000106276648 ...>,
+     @starting=255536.908532>,
+   @reader={"schema"=>{"bar"=>"symbol"}, "duration"=>7.000024197623134e-06}>>
+```
+
+You can execute `success?` or `failure?` on JsonStatham::Result.
+Running `Foo.call` a second time with a new hash schema and `store_schema = false` will not create a new file and result a failure.
+
+## Configuration:
+
+```ruby
+JsonStatham.configure do |config|
+  config.store_schema = true
+  config.schemas_path = "schemas"
+  config.logger       = true
+end
+```
+
+Available configuration attributes:
+
+*Required attributes:*
+
+- `schemas_path` The path where the json files will be read and created
+
+*Optional attributes:*
+
+- `store_schema` Default to `false`. It allows to create or not a new file
+
+- `logger` Default to `false`. It allows to create or not a new file
 
 ## Development
 
