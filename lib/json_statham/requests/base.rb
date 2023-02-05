@@ -25,9 +25,13 @@ module JsonStatham
       end
 
       def base_path
-        return "#{schemas_path}/#{folder_path}" if !!folder_path
+        return "#{schemas_path}/#{folder_path}" if folder?
 
         schemas_path
+      end
+
+      def folder?
+        !!folder_path
       end
 
       def file_path
@@ -46,10 +50,6 @@ module JsonStatham
 
       def splitted_name
         name.split("/")
-      end
-
-      def schema_name
-        splitted_name.last
       end
 
       def call

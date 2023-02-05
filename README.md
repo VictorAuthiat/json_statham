@@ -28,6 +28,8 @@ end
 
 Now you can extend `JsonStatham` to use `.stathamnize` method.
 
+Example:
+
 ```ruby
 module Foo
   extend JsonStatham
@@ -40,14 +42,17 @@ module Foo
 end
 ```
 
-Running `Foo.call({ foo: :bar })` will create a new file containing the json schema and execution duration.
+Running `Foo.call({ foo: :bar })` will create a new file *foo.json* in a *schemas* directory. This file contain the json schema and execution duration.
+
+Example:
 
 ```json
-// schemas/foo.json
 {"schema":{"bar":"symbol"},"duration":2.9999937396496534e-06}
 ```
 
 It returns a `JsonStatham::Result` object.
+
+Example:
 
 ```ruby
 #<JsonStatham::Result:0x0000000106275428
@@ -76,6 +81,8 @@ Running `Foo.call` a second time with a new hash schema and `store_schema = fals
 
 ## Configuration:
 
+Available configuration attributes:
+
 ```ruby
 JsonStatham.configure do |config|
   config.store_schema = true
@@ -83,8 +90,6 @@ JsonStatham.configure do |config|
   config.logger       = true
 end
 ```
-
-Available configuration attributes:
 
 *Required attributes:*
 

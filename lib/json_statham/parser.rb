@@ -42,10 +42,6 @@ module JsonStatham
       reader["duration"]
     end
 
-    def store_schema
-
-    end
-
     def current_schema
       JsonStatham::Schema.call(schema)
     end

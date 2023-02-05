@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "simplecov"
 require "json_statham"
 
 RSpec.configure do |config|
