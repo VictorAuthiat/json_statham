@@ -137,6 +137,26 @@ RSpec.describe UserSerializer do
 end
 ```
 
+## Before deploy
+
+  - [x] Test with Rails
+  - [x] Test without Rails
+  - [x] Test with RSpec
+  - [x] Example with RSpec
+  - [ ] Test with Minitest
+  - [ ] Example with Minitest
+  - [ ] Add specs
+    - [x] JsonStatham
+    - [ ] JsonStatham::Validation
+    - [ ] JsonStatham::Result
+    - [ ] JsonStatham::Schema
+    - [ ] JsonStatham::Parser
+    - [ ] JsonStatham::Parser
+    - [ ] JsonStatham::Requests::Base
+    - [ ] JsonStatham::Requests::Writer
+    - [ ] JsonStatham::Requests::Reader
+    - [ ] JsonStatham::Requests::Observer
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
