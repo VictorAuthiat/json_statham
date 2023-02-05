@@ -81,6 +81,62 @@ end
 
 - `logger` Default to `false`. It allows to create or not a new file
 
+## Example using RSpec
+
+extend `JsonStatham` in your spec_helper.
+
+```ruby
+RSpec.configure do |config|
+  config.extend JsonStatham
+end
+```
+
+Given a UserSerializer:
+
+```ruby
+class UserSerializer
+  attr_reader :user
+
+  def initialize(user)
+    @user = user
+  end
+
+  def to_h
+    { id: user.id, full_name: user.full_name, email: user.email }
+  end
+end
+```
+
+You can thenuse stathamnize with different traits in your spec file.
+
+```ruby
+RSpec.describe UserSerializer do
+  describe "Schema" do
+    subject { stathamnize(trait) { serializer }.success? }
+
+    context "Given a valid user" do
+      let(:serializer) { UserSerializer.new(user).to_h }
+      let(:trait)      { "user_serializer/valid-user" }
+      let(:user)       { create(:user, :valid) }
+
+      it "has a valid schema" do
+        expect(subject).to eq(true)
+      end
+    end
+
+    context "Given an invalid user" do
+      let(:serializer) { UserSerializer.new(user).to_h }
+      let(:trait)      { "user_serializer/invalid-user" }
+      let(:user)       { create(:user, :invalid) }
+
+      it "has a valid schema" do
+        expect(subject).to eq(true)
+      end
+    end
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

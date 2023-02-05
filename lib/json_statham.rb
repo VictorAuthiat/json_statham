@@ -22,6 +22,7 @@ module JsonStatham
 
     def extended(base)
       base.include Helper
+      base.extend Helper
     end
   end
 end

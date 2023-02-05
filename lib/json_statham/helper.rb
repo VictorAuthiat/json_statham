@@ -2,11 +2,16 @@
 
 module JsonStatham
   module Helper
-    def self.included(base)
-      base.extend ClassMethods
+    class << self
+      ["included", "extended"].each do |expand|
+        define_method(expand) do |base|
+          base.extend HelperMethod
+          base.include HelperMethod
+        end
+      end
     end
 
-    module ClassMethods
+    module HelperMethod
       def stathamnize(name, &block)
         ensure_valid_config
 
