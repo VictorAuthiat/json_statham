@@ -2,9 +2,12 @@ Not deployed yet.
 
 # JsonStatham
 
-A Ruby library for carefully refactoring json objects.
-You can use this library when you want to change your serialization system.
-For example if you want to migrate from [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) to another library.
+Ruby library to check json schema changes.
+
+JsonStatham allows to check the structure changes in a json.
+It allows to check that the keys are always the same and that the value classes are identical. You can also observe the differences in execution time of your block.
+
+You can use this library when you want to change your serialization system. For example if you want to migrate from [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) to another library.
 
 ## Installation
 
