@@ -33,7 +33,7 @@ end
 
 Now you can extend `JsonStatham` to use `.stathamnize` method.
 
-Example:
+**Example:**
 
 ```ruby
 module Foo
@@ -49,7 +49,7 @@ end
 
 Running `Foo.call({ foo: :bar })` will create a new file **foo.json** in a **schemas** directory. This file contain the json schema and execution duration.
 
-Example:
+**Example:**
 
 ```json
 {"schema":{"bar":"symbol"},"duration":2.9999937396496534e-06}
