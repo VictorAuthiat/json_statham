@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "json_statham/cli"
 require_relative "json_statham/helper"
 require_relative "json_statham/version"
 require_relative "json_statham/requests"

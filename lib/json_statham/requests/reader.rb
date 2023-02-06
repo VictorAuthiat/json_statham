@@ -3,10 +3,12 @@
 module JsonStatham
   module Requests
     class Reader < Base
-      def call
-        return {} unless File.exist?(file_path)
+      def call(path = nil)
+        path ||= file_path
 
-        JSON.parse(File.read(file_path))
+        return {} unless File.exist?(path)
+
+        JSON.parse(File.read(path))
       rescue JSON::ParserError
         {}
       end
