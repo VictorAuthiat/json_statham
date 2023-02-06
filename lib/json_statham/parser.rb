@@ -31,15 +31,23 @@ module JsonStatham
     end
 
     def schema
-      @_schema ||= observer.data
+      observer&.data
     end
 
     def stored_schema
+      return unless reader?
+
       reader["schema"]
     end
 
     def previous_duration
+      return unless reader?
+
       reader["duration"]
+    end
+
+    def reader?
+      !!reader
     end
 
     def current_schema

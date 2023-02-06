@@ -9,6 +9,8 @@ module JsonStatham
     end
 
     def initialize(parser)
+      Validation.check_object_class(parser, [JsonStatham::Parser])
+
       @parser = parser
     end
 
@@ -24,7 +26,13 @@ module JsonStatham
     end
 
     def current_duration
+      return unless observed?
+
       parser.observer.duration
+    end
+
+    def observed?
+      !!parser.observer
     end
 
     def previous_duration

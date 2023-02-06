@@ -147,14 +147,14 @@ end
   - [ ] Example with Minitest
   - [ ] Add specs
     - [x] JsonStatham
-    - [ ] JsonStatham::Validation
-    - [ ] JsonStatham::Result
-    - [ ] JsonStatham::Schema
-    - [ ] JsonStatham::Parser
-    - [ ] JsonStatham::Parser
+    - [x] JsonStatham::Validation
+    - [x] JsonStatham::Config
+    - [x] JsonStatham::Result
+    - [x] JsonStatham::Schema
+    - [x] JsonStatham::Parser
     - [ ] JsonStatham::Requests::Base
-    - [ ] JsonStatham::Requests::Writer
-    - [ ] JsonStatham::Requests::Reader
+    - [x] JsonStatham::Requests::Writer
+    - [x] JsonStatham::Requests::Reader
     - [ ] JsonStatham::Requests::Observer
 
 ## Development

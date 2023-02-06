@@ -9,8 +9,6 @@ module JsonStatham
         File.write(file_path, JSON.dump(dump))
       end
 
-      private
-
       def dump
         { schema: current_schema, duration: observer.duration }
       end
