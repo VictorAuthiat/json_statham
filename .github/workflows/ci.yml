@@ -59,7 +59,7 @@ jobs:
     name: "Report coverage to Code Climate"
     runs-on: "ubuntu-20.04"
     needs: "test"
-    if: "success() && github.ref == 'refs/heads/master'"
+    if: "success() && github.ref == 'refs/heads/add-specs'"
     env:
       CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
 
