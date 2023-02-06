@@ -23,16 +23,18 @@ RSpec.describe JsonStatham::Schema do
     end
 
     it "returns schema hash" do
-      expect(subject).to eq({
-        "data" => {
-          "created_at" => "date",
-          "id" => "string",
-          "objects" => [
-            { "id" => "string" },
-            { "id" => "string" }
-          ]
+      expect(subject).to eq(
+        {
+          "data" => {
+            "created_at" => "date",
+            "id" => "string",
+            "objects" => [
+              { "id" => "string" },
+              { "id" => "string" }
+            ]
+          }
         }
-      })
+      )
     end
   end
 

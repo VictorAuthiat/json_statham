@@ -155,7 +155,7 @@ RSpec.describe JsonStatham::Parser do
       let(:schema) { { foo: :bar } }
       let(:previous_duration) { 0.111 }
 
-      it { is_expected.to eq(previous_duration)}
+      it { is_expected.to eq(previous_duration) }
     end
   end
 
@@ -172,7 +172,7 @@ RSpec.describe JsonStatham::Parser do
     context "with reader" do
       let(:reader) { { foo: "bar" } }
 
-      it { is_expected.to eq(true)}
+      it { is_expected.to eq(true) }
     end
   end
 
@@ -201,7 +201,7 @@ RSpec.describe JsonStatham::Parser do
     context "with stored_schema" do
       let(:stored_schema) { { foo: :bar } }
 
-      it { is_expected.to eq(true)}
+      it { is_expected.to eq(true) }
     end
   end
 
@@ -209,7 +209,7 @@ RSpec.describe JsonStatham::Parser do
     subject { parser.valid? }
 
     context "without stored schema" do
-      before  { allow(parser).to receive(:stored_schema) { nil } }
+      before { allow(parser).to receive(:stored_schema) { nil } }
 
       it { is_expected.to eq(true) }
     end
