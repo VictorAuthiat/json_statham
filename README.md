@@ -1,5 +1,3 @@
-Not deployed yet.
-
 # JsonStatham
 
 [![Build Status](https://github.com/VictorAuthiat/json_statham/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/json_statham/actions/workflows/ci.yml)
@@ -51,6 +49,7 @@ end
 ```
 
 Running `Foo.call({ foo: :bar })` will create a new file **foo.json** in a **schemas** directory. This file contain the json schema and execution duration.
+⚠️ File will be created only if **store_schema** config attribute is true.
 
 **Example:**
 
