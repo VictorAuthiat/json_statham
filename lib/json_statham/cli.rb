@@ -17,12 +17,8 @@ module JsonStatham
     map "-L" => :list
 
     def list
-      schemas_path = options["schemas_path"]
-      JsonStatham.configure { |c| c.schemas_path = schemas_path }
-
-      puts
-      puts "file_path                             duration"
-      puts "----------------------------------------------"
+      configure_json_statham
+      display_header
 
       Dir["./#{schemas_path}/**/*.json"].each do |file_path|
         parser   = JsonStatham::Parser.new(file_path)
@@ -33,6 +29,22 @@ module JsonStatham
       end
 
       puts
+    end
+
+    def schemas_path
+      @_schemas_path ||= options["schemas_path"]
+    end
+
+    private
+
+    def configure_json_statham
+      JsonStatham.configure { |c| c.schemas_path = schemas_path }
+    end
+
+    def display_header
+      puts
+      puts "file_path                             duration"
+      puts "----------------------------------------------"
     end
   end
 end
