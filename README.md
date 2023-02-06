@@ -3,6 +3,9 @@ Not deployed yet.
 # JsonStatham
 
 [![Build Status](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml/badge.svg)](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml)
+[![Code Climate](https://codeclimate.com/github/victorauthiat/json_statham/badges/gpa.svg)](https://codeclimate.com/github/victorauthiat/json_statham)
+[![Test Coverage](https://codeclimate.com/github/victorauthiat/json_statham/badges/coverage.svg)](https://codeclimate.com/github/victorauthiat/json_statham/coverage)
+[![Issue Count](https://codeclimate.com/github/victorauthiat/json_statham/badges/issue_count.svg)](https://codeclimate.com/github/victorauthiat/json_statham)
 
 Ruby library to check json schema changes.
 
@@ -136,26 +139,6 @@ RSpec.describe UserSerializer do
   end
 end
 ```
-
-## Before deploy
-
-  - [x] Test with Rails
-  - [x] Test without Rails
-  - [x] Test with RSpec
-  - [x] Example with RSpec
-  - [ ] Test with Minitest
-  - [ ] Example with Minitest
-  - [ ] Add specs
-    - [x] JsonStatham
-    - [x] JsonStatham::Validation
-    - [x] JsonStatham::Config
-    - [x] JsonStatham::Result
-    - [x] JsonStatham::Schema
-    - [x] JsonStatham::Parser
-    - [ ] JsonStatham::Requests::Base
-    - [x] JsonStatham::Requests::Writer
-    - [x] JsonStatham::Requests::Reader
-    - [ ] JsonStatham::Requests::Observer
 
 ## Development
 
