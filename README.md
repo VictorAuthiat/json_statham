@@ -2,10 +2,10 @@ Not deployed yet.
 
 # JsonStatham
 
-[![Build Status](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml/badge.svg)](https://github.com/victorauthiat/json_statham/actions/workflows/ci.yml)
-[![Code Climate](https://codeclimate.com/github/victorauthiat/json_statham/badges/gpa.svg)](https://codeclimate.com/github/victorauthiat/json_statham)
-[![Test Coverage](https://codeclimate.com/github/victorauthiat/json_statham/badges/coverage.svg)](https://codeclimate.com/github/victorauthiat/json_statham/coverage)
-[![Issue Count](https://codeclimate.com/github/victorauthiat/json_statham/badges/issue_count.svg)](https://codeclimate.com/github/victorauthiat/json_statham)
+[![Build Status](https://github.com/VictorAuthiat/json_statham/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/json_statham/actions/workflows/ci.yml)
+[![Code Climate](https://codeclimate.com/github/VictorAuthiat/json_statham/badges/gpa.svg)](https://codeclimate.com/github/VictorAuthiat/json_statham)
+[![Test Coverage](https://codeclimate.com/github/VictorAuthiat/json_statham/badges/coverage.svg)](https://codeclimate.com/github/VictorAuthiat/json_statham/coverage)
+[![Issue Count](https://codeclimate.com/github/VictorAuthiat/json_statham/badges/issue_count.svg)](https://codeclimate.com/github/VictorAuthiat/json_statham)
 
 Ruby library to check json schema changes.
 
