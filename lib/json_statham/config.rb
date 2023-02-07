@@ -2,12 +2,13 @@
 
 module JsonStatham
   class Config
-    attr_reader :schemas_path, :store_schema, :logger
+    attr_reader :schemas_path, :store_schema, :logger, :raise_ratio
 
     def initialize
       @schemas_path = nil
       @store_schema = nil
       @logger       = nil
+      @raise_ratio  = nil
     end
 
     def store_schema?
@@ -20,6 +21,10 @@ module JsonStatham
 
     def schemas_path_present?
       !!schemas_path
+    end
+
+    def raise_on_failure?
+      !!raise_ratio
     end
 
     def schemas_path=(value)
@@ -38,6 +43,12 @@ module JsonStatham
       Validation.check_object_class(value, [TrueClass, FalseClass, NilClass])
 
       @logger = value
+    end
+
+    def raise_ratio=(value)
+      Validation.check_object_class(value, [Integer])
+
+      @raise_ratio = value
     end
   end
 end
