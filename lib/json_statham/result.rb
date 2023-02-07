@@ -20,7 +20,6 @@ module JsonStatham
 
     def call
       ensure_valid_ratio
-      log_result
 
       self
     end
@@ -57,22 +56,16 @@ module JsonStatham
       current_duration.fdiv(previous_duration)
     end
 
-    def limit_ratio
+    def raise_ratio
       config.raise_ratio
-    end
-
-    def ensure_valid_ratio
-      return unless config.raise_on_failure? && previous_duration? && ratio > limit_ratio
-
-      raise JsonStatham::InvalidRatioError, "limit_ratio: #{limit_ratio}. current_ratio: #{ratio}"
     end
 
     private
 
-    def log_result
-      return unless JsonStatham.config.logger?
+    def ensure_valid_ratio
+      return unless config.raise_on_failure? && previous_duration? && ratio > raise_ratio
 
-      puts "Previous duration: #{previous_duration} Current duration: #{current_duration}"
+      raise JsonStatham::InvalidRatioError, "raise_ratio: #{raise_ratio}. current_ratio: #{ratio}"
     end
   end
 end
