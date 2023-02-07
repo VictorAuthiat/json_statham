@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_statham (0.1.1)
+    json_statham (0.1.2)
 
 GEM
   remote: https://rubygems.org/
