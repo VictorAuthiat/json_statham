@@ -142,6 +142,44 @@ RSpec.describe UserSerializer do
 end
 ```
 
+Or you can create a shared example
+
+```ruby
+RSpec.shared_examples 'a serializer' do |schema_name|
+  describe "#as_json" do
+    subject do
+      stathamnize("#{serializer_path}/#{schema_name}") do
+        described_class.new(record).as_json
+      end
+    end
+
+    let(:serializer_path) { described_class.name.underscore }
+
+    it "returns #{schema_name} object as json" do
+      expect(subject.success?).to eq(true)
+    end
+  end
+end
+```
+
+Then you can use it inside your specs
+
+```ruby
+require "spec_helper"
+
+RSpec.describe FooSerializer do
+  it_behaves_like "a serializer", "foo" do
+    let(:record) { create(:foo) }
+  end
+
+  FactoryBot.factories[:foo].definition.defined_traits.map(&:name).each do |trait|
+    it_behaves_like "a serializer", trait do
+      let(:record) { create(:foo, trait) }
+    end
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
