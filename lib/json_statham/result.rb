@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module JsonStatham
+  class InvalidRatioError < StandardError
+  end
+
   class Result
     attr_reader :parser, :config
 
@@ -61,7 +64,7 @@ module JsonStatham
     def ensure_valid_ratio
       return unless config.raise_on_failure? && previous_duration? && ratio > limit_ratio
 
-      raise StandardError, "limit_ratio: #{limit_ratio}. current_ratio: #{ratio}"
+      raise JsonStatham::InvalidRatioError, "limit_ratio: #{limit_ratio}. current_ratio: #{ratio}"
     end
 
     private
