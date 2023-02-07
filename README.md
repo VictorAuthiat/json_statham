@@ -69,20 +69,22 @@ Available configuration attributes:
 JsonStatham.configure do |config|
   config.schemas_path = "schemas"
   config.store_schema = true
-  config.logger       = true
   config.raise_ratio  = 10
 end
 ```
 
 *Required attributes:*
 
-- `schemas_path` The path where the json files will be read and created
+- `schemas_path` String.
+  The path where the json files will be read and created.
 
 *Optional attributes:*
 
-- `store_schema` Default to `false`. It allows to create or not a new file
+- `store_schema` Boolean, default to `false`.
+  It allows to create or not a new file.
 
-- `logger` Default to `false`. It allows to create or not a new file
+- `raise_ratio` Integer, default to `nil`.
+  The ratio of increase in execution time. This allows to raise an error when the execution of the block takes longer than expected.
 
 ## Example using RSpec
 
@@ -115,7 +117,7 @@ You can thenuse stathamnize with different traits in your spec file.
 ```ruby
 RSpec.describe UserSerializer do
   describe "Schema" do
-    subject { stathamnize(trait) { serializer }.success? }
+    subject { stathamnize(trait) { serializer } }
 
     context "Given a valid user" do
       let(:serializer) { UserSerializer.new(user).to_h }
@@ -123,7 +125,7 @@ RSpec.describe UserSerializer do
       let(:user)       { create(:user, :valid) }
 
       it "has a valid schema" do
-        expect(subject).to eq(true)
+        expect(subject.success?).to eq(true)
       end
     end
 
@@ -133,7 +135,7 @@ RSpec.describe UserSerializer do
       let(:user)       { create(:user, :invalid) }
 
       it "has a valid schema" do
-        expect(subject).to eq(true)
+        expect(subject.success?).to eq(true)
       end
     end
   end
