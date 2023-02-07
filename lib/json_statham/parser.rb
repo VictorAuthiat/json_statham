@@ -18,10 +18,11 @@ module JsonStatham
     def call
       @reader   = JsonStatham::Requests::Reader.call(self)
       @observer = JsonStatham::Requests::Observer.call(self)
+      result    = JsonStatham::Result.call(self)
 
       store_current_schema
 
-      JsonStatham::Result.call(self)
+      result
     end
 
     def store_current_schema

@@ -54,27 +54,88 @@ RSpec.describe JsonStatham::Result do
 
     let(:parser) { JsonStatham::Parser.new("foo") }
 
-    context "without logger" do
-      before { JsonStatham.configure { |c| c.logger = false } }
+    context "given config does raise on failure" do
+      before { allow(JsonStatham.config).to receive(:raise_on_failure?) { false } }
 
-      it "does not puts the result" do
-        expect(described_class).not_to receive(:puts)
-        subject
-      end
-
-      it { is_expected.to eq(result) }
+      it { is_expected.to be_a(described_class) }
     end
 
-    context "with logger" do
-      before { JsonStatham.configure { |c| c.logger = true } }
+    context "given config raise on failure" do
+      before { allow(JsonStatham.config).to receive(:raise_on_failure?) { true } }
 
-      it "puts the result" do
-        expect(described_class).not_to receive(:puts)
-        subject
+      context "without previous_duration" do
+        it { is_expected.to be_a(described_class) }
+
+        it "does not raise InvalidRatioError" do
+          expect { subject }.not_to raise_error(JsonStatham::InvalidRatioError)
+        end
       end
 
-      it { is_expected.to eq(result) }
+      context "with previous_duration" do
+        before do
+          allow(result).to receive(:previous_duration) { 0.111 }
+        end
+
+        context "when ratio is lower than limit ratio" do
+          before do
+            allow(result).to receive(:ratio)       { 2 }
+            allow(result).to receive(:raise_ratio) { 3 }
+          end
+
+          it "does not raise InvalidRatioError" do
+            expect { subject }.not_to raise_error(JsonStatham::InvalidRatioError)
+          end
+
+          it { is_expected.to be_a(described_class) }
+        end
+
+        context "when ratio is greater than limit ratio" do
+          before do
+            allow(result).to receive(:ratio)       { 7 }
+            allow(result).to receive(:raise_ratio) { 3 }
+          end
+
+          it "raise InvalidRatioError" do
+            expect { subject }.to raise_error(JsonStatham::InvalidRatioError)
+          end
+        end
+      end
     end
+  end
+
+  describe "#ratio" do
+    subject { result.ratio }
+
+    let(:parser) { JsonStatham::Parser.new("foo") }
+
+    context "when not observed" do
+      before { allow(result).to receive(:observed?) { false } }
+
+      it { is_expected.to eq(0) }
+    end
+
+    context "when observed" do
+      before do
+        allow(result).to receive(:observed?) { true }
+        allow(result).to receive(:previous_duration) { previous_duration }
+        allow(result).to receive(:current_duration)  { current_duration }
+      end
+
+      let(:previous_duration) { 10 }
+      let(:current_duration)  { 100 }
+
+      it { is_expected.to eq(current_duration.fdiv(previous_duration)) }
+    end
+  end
+
+  describe "#raise_ratio" do
+    subject { result.raise_ratio }
+    before  { JsonStatham.configure { |c| c.raise_ratio = raise_ratio } }
+
+    let(:raise_ratio) { 5 }
+    let(:parser)      { JsonStatham::Parser.new("foo") }
+
+    it { is_expected.to eq(raise_ratio) }
   end
 
   describe "#current_duration" do

@@ -69,19 +69,22 @@ Available configuration attributes:
 JsonStatham.configure do |config|
   config.schemas_path = "schemas"
   config.store_schema = true
-  config.logger       = true
+  config.raise_ratio  = 10
 end
 ```
 
 *Required attributes:*
 
-- `schemas_path` The path where the json files will be read and created
+- `schemas_path` String.
+  The path where the json files will be read and created.
 
 *Optional attributes:*
 
-- `store_schema` Default to `false`. It allows to create or not a new file
+- `store_schema` Boolean, default to `false`.
+  It allows to create or not a new file.
 
-- `logger` Default to `false`. It allows to create or not a new file
+- `raise_ratio` Integer, default to `nil`.
+  The ratio of increase in execution time. This allows to raise an error when the execution of the block takes longer than expected.
 
 ## Example using RSpec
 
@@ -114,7 +117,7 @@ You can thenuse stathamnize with different traits in your spec file.
 ```ruby
 RSpec.describe UserSerializer do
   describe "Schema" do
-    subject { stathamnize(trait) { serializer }.success? }
+    subject { stathamnize(trait) { serializer } }
 
     context "Given a valid user" do
       let(:serializer) { UserSerializer.new(user).to_h }
@@ -122,7 +125,7 @@ RSpec.describe UserSerializer do
       let(:user)       { create(:user, :valid) }
 
       it "has a valid schema" do
-        expect(subject).to eq(true)
+        expect(subject.success?).to eq(true)
       end
     end
 
@@ -132,8 +135,46 @@ RSpec.describe UserSerializer do
       let(:user)       { create(:user, :invalid) }
 
       it "has a valid schema" do
-        expect(subject).to eq(true)
+        expect(subject.success?).to eq(true)
       end
+    end
+  end
+end
+```
+
+Or you can create a shared example
+
+```ruby
+RSpec.shared_examples 'a serializer' do |schema_name|
+  describe "#as_json" do
+    subject do
+      stathamnize("#{serializer_path}/#{schema_name}") do
+        described_class.new(record).as_json
+      end
+    end
+
+    let(:serializer_path) { described_class.name.underscore }
+
+    it "returns #{schema_name} object as json" do
+      expect(subject.success?).to eq(true)
+    end
+  end
+end
+```
+
+Then you can use it inside your specs
+
+```ruby
+require "spec_helper"
+
+RSpec.describe FooSerializer do
+  it_behaves_like "a serializer", "foo" do
+    let(:record) { create(:foo) }
+  end
+
+  FactoryBot.factories[:foo].definition.defined_traits.map(&:name).each do |trait|
+    it_behaves_like "a serializer", trait do
+      let(:record) { create(:foo, trait) }
     end
   end
 end
