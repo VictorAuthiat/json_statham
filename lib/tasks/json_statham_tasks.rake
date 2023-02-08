@@ -6,4 +6,4 @@ namespace :statham do
   end
 end
 
-task json_statham: ['statham:log_files_duration']
+task json_statham: ["statham:log_files_duration"]
