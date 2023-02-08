@@ -15,4 +15,4 @@ gem "pry", "~> 0.14.2"
 
 gem "simplecov", "~> 0.22.0"
 
-gem "rails", "6.1.7.1"
+gem "rails", "~> 6.1.7.1"
