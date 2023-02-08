@@ -10,7 +10,7 @@ module JsonStatham
 
     def call
       log_header
-      values.sort_by { |_, value| value }.each { |hash| log_schema(hash) }
+      values.sort_by { |h| h[:duration] }.each { |hash| log_schema(hash) }
       log_divider
     end
 
