@@ -1,0 +1,8 @@
+Description:
+  Adds json_statham initializer for configuration
+
+Example:
+    rails generate json_statham:install
+
+    This will create:
+        config/initializers/json_statham.rb
