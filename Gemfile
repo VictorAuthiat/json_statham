@@ -14,3 +14,10 @@ gem "rubocop", "~> 1.21"
 gem "pry", "~> 0.14.2"
 
 gem "simplecov", "~> 0.22.0"
+
+gem "rails", "~> 6.1.7.1"
+
+group :test do
+  gem "generator_spec"
+  gem "rspec-rails"
+end

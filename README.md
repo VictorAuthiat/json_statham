@@ -180,6 +180,30 @@ RSpec.describe FooSerializer do
 end
 ```
 
+## Rails
+
+Run the generator:
+
+    $ rails g json_statham:install
+
+This will create a new initializer at **config/initializers/json_statham.rb**.
+After running your tests to generate the json files you can now run `rails json_statham`.
+
+    $ rails json_statham
+
+This will show you a list of your json files ordered by duration.
+
+```
++------------------------------------------------------------------------+-----------------------+
+| File path                                                              | Duration              |
++------------------------------------------------------------------------+-----------------------+
+| schemas/user_serializer/valid_user.json                                | 0.5460864380002022    |
+| schemas/user_serializer/invalid_user.json                              | 0.2532647902998724    |
+| schemas/post_serializer/published.json                                 | 0.2153625870094402    |
+| schemas/post_serializer/draft.json                                     | 0.1238838530000066    |
++------------------------------------------------------------------------+-----------------------+
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

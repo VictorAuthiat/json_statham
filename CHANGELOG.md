@@ -1,5 +1,10 @@
 ## Changelog
 
+### [0.1.3] - 2023-02-18
+
+  * Features:
+    * Add Rails support.
+
 ### [0.1.2] - 2023-02-07
 
   * Features:
