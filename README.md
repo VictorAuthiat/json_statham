@@ -195,6 +195,7 @@ This will show you a list of your json files ordered by duration.
 
     $ rails json_statham
 
+```
 +------------------------------------------------------------------------+-----------------------+
 | File path                                                              | Duration              |
 +------------------------------------------------------------------------+-----------------------+
@@ -203,6 +204,7 @@ This will show you a list of your json files ordered by duration.
 | schemas/post_serializer/published.json                                 | 0.2153625870094402    |
 | schemas/post_serializer/draft.json                                     | 0.1238838530000066    |
 +------------------------------------------------------------------------+-----------------------+
+```
 
 ## Development
 
