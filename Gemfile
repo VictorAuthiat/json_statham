@@ -17,11 +17,6 @@ gem "simplecov", "~> 0.22.0"
 
 gem "rails", "~> 6.1.7.1"
 
-case RUBY_VERSION.split(".").first
-when "3"
-  gem "net-smtp", require: false
-end
-
 group :test do
   gem "generator_spec"
   gem "rspec-rails"

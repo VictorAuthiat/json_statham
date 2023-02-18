@@ -212,7 +212,6 @@ PLATFORMS
 DEPENDENCIES
   generator_spec
   json_statham!
-  net-smtp
   pry (~> 0.14.2)
   rails (~> 6.1.7.1)
   rake (~> 13.0)
