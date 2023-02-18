@@ -186,14 +186,12 @@ Run the generator:
 
     $ rails g json_statham:install
 
-This will create a new initializer at "config/initializers/json_statham.rb".
-
+This will create a new initializer at **config/initializers/json_statham.rb**.
 After running your tests to generate the json files you can now run `rails json_statham`.
-This will show you a list of your json files ordered by duration.
-
-**Example:**
 
     $ rails json_statham
+
+This will show you a list of your json files ordered by duration.
 
 ```
 +------------------------------------------------------------------------+-----------------------+
